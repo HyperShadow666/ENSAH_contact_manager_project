@@ -1,0 +1,49 @@
+########################################################################################################################
+
+ceci est une application desktop de gestion de contact en utilisant MySQL
+pour pouvoir utiliser cette application il faut d'abord:
+    -installer mysql
+    -creer une base de données "contacts"
+    -creer les tables.
+
+pour vous aider a faire ça, il suffit d'executer ces instructions sequentiellement en terminal de mysql:
+
+  CREATE DATABASE contacts;
+
+  USE DATABASE contacts;
+
+  CREATE TABLE IF NOT EXISTS contact (
+      id INT PRIMARY KEY AUTO_INCREMENT,
+      nom VARCHAR(150),
+      prenom VARCHAR(150),
+      telephone1 VARCHAR(150),
+      adress VARCHAR(150),
+      emailPro VARCHAR(150),
+      genre VARCHAR(10),
+      telephone2 VARCHAR(150),
+      emailPerso VARCHAR(150)
+  );
+
+  CREATE TABLE IF NOT EXISTS groupes (
+        id_group INT PRIMARY KEY AUTO_INCREMENT,
+        group_name VARCHAR(150)
+  );
+
+   CREATE TABLE IF NOT EXISTS group_contact (
+       contact_id INT,
+       group_id INT,
+       FOREIGN KEY (contact_id) REFERENCES contact(id),
+       FOREIGN KEY (group_id) REFERENCES groupes(group_id)
+   );
+
+  CREATE TABLE IF NOT EXISTS contact_image (
+          contact_id INT ,
+          image longblob
+    );
+
+  ALTER TABLE contact_image
+  ADD FOREIGN KEY (contact_id) REFERENCES contact(id);
+
+########################################################################################################################
+
+ENJOY ^-^
